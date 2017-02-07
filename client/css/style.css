@@ -1,0 +1,12 @@
+.menu {
+	border-radius: 0 !important;
+}
+
+.task-container {
+	height: 450px;
+	overflow-y: scroll;
+}
+
+.edit-container {
+	height: 300px;
+}

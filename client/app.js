@@ -14,10 +14,11 @@ app.config(function($routeProvider) {
 	
 });
 
-app.controller('HomeController', function($scope, $http, taskService) {
+app.controller('HomeController', function($scope, $http, socket, taskService) {
 	
 	$scope.tasks = taskService.query();
 	$scope.saved = [];
+	$scope.selectedTask = {};
 
 	socket.on('new-task', function() {
 		$scope.messages = msgService.query();

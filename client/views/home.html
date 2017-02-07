@@ -1,5 +1,8 @@
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-lg-6">
+
+	</div>
+	<div class="col-lg-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4>Task List</h4>
@@ -12,29 +15,44 @@
 						<input class="form-control" type="text" ng-model="mSearch" placeholder="Search">
 					</div>
 				</div>
-			<div class="panel-body contact">
+			<div class="panel-body task-container">
 			<table class="table table-striped">
 		        	<thead>
 					<tr>
-					<th>Timestamp</th>
+					<th>Options</th>
 					<th>Name</th>
+					<th>Timestamp</th>
 					<th>Priority</th>
 					<th>Due Date</th>
-<!-- 					<th>Select</th>
-					<th>Parse</th> -->
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="task in tasks | filter : mSearch">
-					<td>{{task.timestamp}}</td>
+					<td><button class="menu btn btn-success"><i class="fa fa-check"></i></button><button class="menu btn btn-primary"><i class="fa fa-search"></i></button><button class="menu btn btn-warning"><i class="fa fa-edit"></i></button><button class="menu btn btn-danger"><i class="fa fa-trash"><?</button></td>
 					<td>{{task.name}}</td>
+					<td>{{task.timestamp}}</td>
+					<td><span class="label label-warning">{{task.priority}}</span></td>
+					<td>{{task.due}}</td>
 					
-<!-- 					<td><button class="btn btn-success btn-sm" ng-click="add(task)">Save</button></td>
-					<td><button class="btn btn-primary btn-sm" ng-click="add(task)">Parse</button></td> -->
 					</tr>
 				</tbody>
 			</table>
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+	</div>
+	<div class="col-lg-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>Editor</h4>
+			</div>
+			<div class="panel-body edit-container">
+
+			</div>
+
+
 </div>

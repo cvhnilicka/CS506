@@ -6,6 +6,7 @@ var Task = require('./server/models/task.js');
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 app.set('port', process.env.PORT || 8000);
 app.use(express.static(path.join(__dirname, './client')));
@@ -33,6 +34,8 @@ router.route('/tasks')
 
 		var task = new Task();
 		task.name = req.body.name;
+		task.due = req.body.due;
+		task.priority = req.body.priority;
 		
 		task.save(function(err) {
 			if(err) res.send(err);
