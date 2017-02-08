@@ -1,6 +1,59 @@
 <div class="row">
 	<div class="col-lg-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>Create Task</h4>
+				<form>
+					<div class="form-group">
+					  <div class="input-group">
+					    <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+					    <input id="email" type="text" class="form-control" name="email" placeholder="Task name">
+					  </div>
+					  	
+					</div>
+				</form>
 
+			</div>
+			<div class="panel-body">
+			<div class="col-lg-3">
+				<span class="label label-primary" style="font-size: 14px;">Priority</span>
+				<div class="radio">
+				  <label><input type="radio" name="optradio">Option 1</label>
+				</div>
+				<div class="radio">
+				  <label><input type="radio" name="optradio">Option 2</label>
+				</div>
+				<div class="radio disabled">
+				  <label><input type="radio" name="optradio" disabled>Option 3</label>
+				</div>
+				<div class="radio disabled">
+				  <label><input type="radio" name="optradio" disabled>Option 3</label>
+				</div>
+				<div class="radio disabled">
+				  <label><input type="radio" name="optradio" disabled>Option 3</label>
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<span class="label label-primary" style="font-size: 14px;">Subtasks</span><br><br>
+				<form>
+					<div class="form-group">
+					  <div class="input-group">
+					    <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+					    <input id="email" type="text" class="form-control" name="email" placeholder="Subtask 1">
+					  </div>
+					  <div class="input-group">
+					    <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+					    <input id="email" type="text" class="form-control" name="email" placeholder="Subtask 2">
+					  </div>
+					  <div class="input-group">
+					    <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+					    <input id="email" type="text" class="form-control" name="email" placeholder="Subtask 3">
+					  </div>
+					</div>
+				</form>
+			</div>
+			</div>
+		</div>
 	</div>
 	<div class="col-lg-6">
 		<div class="panel panel-default">
@@ -15,6 +68,8 @@
 						<input class="form-control" type="text" ng-model="mSearch" placeholder="Search">
 					</div>
 				</div>
+			</form>
+
 			<div class="panel-body task-container">
 			<table class="table table-striped">
 		        	<thead>
