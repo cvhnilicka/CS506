@@ -6,6 +6,7 @@ var TaskSchema = new Schema({
 	timestamp: {type: Date, default: Date.now },
 	due: String,
 	priority: String,
+	subtasks: [String],
 });
 
 module.exports = mongoose.model('Task', TaskSchema);

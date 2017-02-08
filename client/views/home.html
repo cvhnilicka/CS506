@@ -97,7 +97,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="task in tasks | filter : mSearch">
-					<td><button class="menu btn btn-success"><i class="fa fa-check"></i></button><button class="menu btn btn-primary"><i class="fa fa-search"></i></button><button class="menu btn btn-warning"><i class="fa fa-edit"></i></button><button class="menu btn btn-danger"><i class="fa fa-trash"><?</button></td>
+					<td><button class="menu btn btn-success"><i class="fa fa-check"></i></button><button class="menu btn btn-primary"><i class="fa fa-search"></i></button><button class="menu btn btn-danger"><i class="fa fa-trash"><?</button></td>
 					<td>{{task.name}}</td>
 					<td>{{task.timestamp}}</td>
 					<td><span class="label label-warning">{{task.priority}}</span></td>
@@ -119,23 +119,35 @@
 			<div class="panel-body schedule-container">
 				<div class="col-lg-3">
 					<h5 class="schedule">Monday</h5>
-					<div class="well">
-					</div>
+						<ul class="list-group">
+						  <li class="list-group-item">Pay rent</li>
+						  <li class="list-group-item">Get groceries</li>
+						  <li class="list-group-item">CS506 Lecture</li>
+						</ul>
 				</div>
 				<div class="col-lg-3">
 					<h5 class="schedule">Tuesday</h5>
-					<div class="well">
-					</div>
+						<ul class="list-group">
+						  <li class="list-group-item">Pay phone bill</li>
+						  <li class="list-group-item">Get Groceries</li>
+						  <li class="list-group-item">CS506 Lecture</li>
+						</ul>
 				</div>
 				<div class="col-lg-3">
 					<h5 class="schedule">Wednesday</h5>
-					<div class="well">
-					</div>
+						<ul class="list-group">
+						  <li class="list-group-item">Go to work</li>
+						  <li class="list-group-item">Finish homework</li>
+						  <li class="list-group-item">Office hours</li>
+						</ul>
 				</div>
 				<div class="col-lg-3">
 					<h5 class="schedule">Thursday</h5>
-					<div class="well">
-					</div>
+						<ul class="list-group">
+						  <li class="list-group-item">CS506 Lecture</li>
+						  <li class="list-group-item">Go to the bank</li>
+						  <li class="list-group-item">Family Dinner</li>
+						</ul>
 				</div>
 
 			
