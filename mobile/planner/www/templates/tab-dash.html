@@ -1,42 +1,62 @@
 <ion-view view-title="Planner">
   <ion-content class="padding">
-    <h2>Monday</h2>
+    <!-- <h2>Planner</h2> -->
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-       <div class="list card">
+        <div class="panel panel-default">
+          <div class="panel-heading">Task List</div>
+          <div class="panel-body">
+            <table class="table table-striped">
+                    <thead>
+                <tr>
+                <th>Name</th>
+                <th>Options</th>
+                
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pay rent</td> 
+                  <td style="float: right;"><button class="button button-small button-balanced">Complete</button><button class="button button-small button-positive">Edit</button></td>
+                </tr>
+                <tr>
+                  <td>CS506 HW</td> 
+                  <td style="float: right;"><button class="button button-small button-balanced">Complete</button><button class="button button-small button-positive">Edit</button></td>
+                </tr>
+                <tr>
+                  <td>Get Groceries</td> 
+                  <td style="float: right;"><button class="button button-small button-balanced">Complete</button><button class="button button-small button-positive">Edit</button></td>
+                </tr>
+                <tr>
+                  <td>Lunch @ 2pm</td> 
+                  <td style="float: right;"><button class="button button-small button-balanced">Complete</button><button class="button button-small button-positive">Edit</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="Task Name">
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Due Date">
+          </label>
+          <label class="item item-input">
+            <textarea placeholder="Priority"></textarea>
+          </label>
+        </div> -->
 
-  <a href="#" class="item item-icon-left">
-    <i class="icon ion-home"></i>
-    Hosting dinner at 7pm
-  </a>
-
-  <a href="#" class="item item-icon-left">
-    <i class="icon ion-ios-telephone"></i>
-    Call mom
-  </a>
-
-  <a href="#" class="item item-icon-left">
-    <i class="icon ion-wifi"></i>
-    Pay internet bill
-  </a>
-
-  <a href="#" class="item item-icon-left">
-    <i class="icon ion-card"></i>
-    Renew driver's license
-  </a>
-
-</div>
-        
       </div>
     </div>
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-xs-12">
         <button class="button button-block button-energized">
-          Submit
+          Add Task
         </button>
       </div>
-    </div> -->
+    </div>
   </div>
   </ion-content>
 </ion-view>
