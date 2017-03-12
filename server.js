@@ -22,12 +22,6 @@ app.use(morgan('dev'));
 app.use(methodOverride());
 app.use(cors());
 
-app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header('Access-Control-Allow-Methods', 'DELETE', 'PUT');
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-});
-
 mongoose.connect(config.db, function(error) {
 	if(error) console.log(error);
 	else console.log('Connected to planner database: ', config.db);
