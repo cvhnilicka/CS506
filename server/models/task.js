@@ -2,11 +2,41 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var TaskSchema = new Schema({
-	name: String,
-	timestamp: {type: Date, default: Date.now },
-	due: String,
-	priority: String,
-	subtasks: [String],
+	owner: {
+		type: Account,
+		default: null
+	},
+	description: {
+		type: String,
+		default: ""
+	},
+	priority: {
+		type: Number,
+		min: 0,
+		max: 5,
+		default: 0
+	},
+	time: {
+		type: Date
+	},
+	updated: {
+		type: Boolean,
+		default: false
+	},
+	update: {
+		newDescription: {
+			type: String,
+			default: ""
+		},
+		newDate: {
+			type: Date,
+			default: Date.now
+		}
+	},
+	subtasks: {
+		type: [Task],
+		default: []
+	}
 });
 
 module.exports = mongoose.model('Task', TaskSchema);
