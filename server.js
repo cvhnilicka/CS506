@@ -31,6 +31,10 @@ mongoose.connect('mongodb://localhost/planner', function(error) {
 	else console.log('Connected to planner database');
 });
 
+
+
+/* BEGINNING OF THE ROUTER */ 
+
 var router = express.Router();
 
 router.use(function(req, res, next) {
@@ -70,7 +74,7 @@ app.use('/planner', router);
 
 
 
-
+/* END OF ROUTER */
 
 server.listen(app.get('port'), function() {
 	console.log('Server running on port 8000');
