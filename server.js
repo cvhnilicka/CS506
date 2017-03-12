@@ -5,6 +5,7 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 var cors = require('cors');
 var Task = require('./server/models/task.js');
+var Account = require('./server.models/account.js');
 
 var express = require('express');
 var app = express();
