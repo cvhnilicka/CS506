@@ -18,9 +18,12 @@
   "homepage": "https://github.com/cvhnilicka/CS506#readme",
   "dependencies": {
     "body-parser": "^1.16.0",
+    "cors": "^2.8.1",
     "express": "^4.14.1",
     "http": "0.0.0",
+    "method-override": "^2.3.7",
     "mongoose": "^4.8.1",
+    "morgan": "^1.8.1",
     "path": "^0.12.7",
     "socket.io": "^1.7.2"
   }
