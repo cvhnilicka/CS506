@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var User = require('./model/account.js');
+var User = require('./models/user.js');
 
 exports.register = function(req, res) {
 	console.log("registering: ", + req.body.username);

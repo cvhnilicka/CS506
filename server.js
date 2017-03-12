@@ -1,8 +1,8 @@
 var path = require('path');
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var morgan = require('morgan');
-var mongoose = require('mongoose');
 var cors = require('cors');
 
 var User = require('./server/models/user.js');
@@ -21,8 +21,6 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(methodOverride());
 app.use(cors());
-
-app.use(passport.session());
 
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
