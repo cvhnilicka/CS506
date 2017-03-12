@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
-var Account = require('./account.js');
+var User = require('./user.js');
 var Schema = mongoose.Schema;
 
 var TaskSchema = new Schema({
-	owner: {type: mongoose.Schema.ObjectId, ref: "Account"},
+	owner: {type: mongoose.Schema.ObjectId, ref: "User"},
 	description: {
 		type: String,
 		default: ""

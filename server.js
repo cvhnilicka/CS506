@@ -4,8 +4,9 @@ var methodOverride = require('method-override');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 var cors = require('cors');
+
+var User = require('./server/models/user.js');
 var Task = require('./server/models/task.js');
-var Account = require('./server/models/account.js');
 var config = require('./server/config.js');
 
 var express = require('express');
@@ -21,6 +22,8 @@ app.use(morgan('dev'));
 app.use(methodOverride());
 app.use(cors());
 
+app.use(passport.session());
+
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header('Access-Control-Allow-Methods', 'DELETE', 'PUT');
@@ -32,7 +35,8 @@ mongoose.connect(config.db, function(error) {
 	else console.log('Connected to planner database: ', config.db);
 });
 
-
+/* Routes for Passport Initialization */
+require('./server/routes.js')(app);
 
 /* BEGINNING OF THE ROUTER */ 
 
@@ -72,8 +76,6 @@ router.route('/tasks')
 	});
 
 app.use('/planner', router);
-
-
 
 /* END OF ROUTER */
 
