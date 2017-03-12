@@ -15,4 +15,4 @@
 + Basic ionic scaffold can be found under mobile/planner
 + Run **npm install && bower install**
 + Serve with live reload using **ionic serve**
-+ View on all platforms concurrently with **ionic serve --lab**
++ View on all platforms concurrently with **ionic serve --l** and navigate to http://localhost:8000/ionic-lab
