@@ -5,7 +5,8 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 var cors = require('cors');
 var Task = require('./server/models/task.js');
-var Account = require('./server.models/account.js');
+var Account = require('./server/models/account.js');
+var config = require('./server/config.js');
 
 var express = require('express');
 var app = express();
@@ -26,9 +27,9 @@ app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 });
 
-mongoose.connect('mongodb://localhost/planner', function(error) {
+mongoose.connect(config.db, function(error) {
 	if(error) console.log(error);
-	else console.log('Connected to planner database');
+	else console.log('Connected to planner database: ', config.db);
 });
 
 

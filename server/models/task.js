@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Account = require('./account.js');
 var Schema = mongoose.Schema;
 
 var TaskSchema = new Schema({
