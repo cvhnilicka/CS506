@@ -3,10 +3,7 @@ var Account = require('./account.js');
 var Schema = mongoose.Schema;
 
 var TaskSchema = new Schema({
-	owner: {
-		type: Account,
-		default: null
-	},
+	owner: {type: mongoose.Schema.ObjectId, ref: "Account"},
 	description: {
 		type: String,
 		default: ""
@@ -35,7 +32,7 @@ var TaskSchema = new Schema({
 		}
 	},
 	subtasks: {
-		type: [this],
+		type: [ this ],
 		default: []
 	}
 });
