@@ -35,7 +35,7 @@ var TaskSchema = new Schema({
 		}
 	},
 	subtasks: {
-		type: [Task],
+		type: [this],
 		default: []
 	}
 });
