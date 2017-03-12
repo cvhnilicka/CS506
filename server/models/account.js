@@ -6,7 +6,7 @@ var Account = new Schema({
 	username: String,
 	password: String,
 	tasks: {
-		type: [Schemas.Type.Task],
+		type: [{type: Schema.Types.ObjectId, ref: 'Task'}],
 		default: []
 	},
 	categories: {
