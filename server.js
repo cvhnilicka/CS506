@@ -9,7 +9,7 @@ var path = require('path'),
 
 	User = require('./server/models/user.js'),
 	Task = require('./server/models/task.js'),
-	config = require('./server/config.js'),
+	Simplify = require('./server/simplify.js'),
 
 	app = express(),
 	server = require('http').Server(app),
@@ -25,9 +25,9 @@ app.use(methodOverride());
 app.use(cors());
 
 /* Connect Database Instance */
-mongoose.connect(config.db, function(error) {
+mongoose.connect(Simplify.db, function(error) {
 	if(error) console.log(error);
-	else console.log('Connected to planner database: ', config.db);
+	else console.log('Connected to planner database: ', Simplify.db);
 });
 
 
@@ -49,16 +49,12 @@ router.get('/', function(req, res) {
 router.route('/tasks')
 	.post(function(req, res) {
 
-		var task = new Task();
-		task.name = req.body.name;
-		task.due = req.body.due;
-		task.priority = req.body.priority;
-		
+		var task = Simplify.createTask(req);
 		task.save(function(err) {
 			if(err) res.send(err);
 			else {
 				res.json({ message: 'Task created' });
-				io.sockets.emit('new-task', {});
+				// io.sockets.emit('new-task', {});
 			}
 		});
 	})

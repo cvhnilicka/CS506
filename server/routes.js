@@ -1,6 +1,6 @@
 var User = require('./models/user.js');
 var users = require('./login.js');
-var config = require('./config.js');
+var Simplify = require('./simplify.js');
 
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -16,7 +16,7 @@ module.exports = function(app) {
 
 	app.use(cookieParser());
 	app.use(session({
-		secret: config.secret,
+		secret: Simplify.secret,
 		saveUninitialized: true,
 		resave: true
 	}));
