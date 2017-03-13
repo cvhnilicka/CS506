@@ -1,19 +1,21 @@
-var path = require('path');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var morgan = require('morgan');
-var cors = require('cors');
+/* Dependency Imports */
+var path = require('path'),
+	mongoose = require('mongoose'),
+	bodyParser = require('body-parser'),
+	methodOverride = require('method-override'),
+	morgan = require('morgan'),
+	cors = require('cors'),
+	express = require('express'),
 
-var User = require('./server/models/user.js');
-var Task = require('./server/models/task.js');
-var config = require('./server/config.js');
+	User = require('./server/models/user.js'),
+	Task = require('./server/models/task.js'),
+	config = require('./server/config.js'),
 
-var express = require('express');
-var app = express();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+	app = express(),
+	server = require('http').Server(app),
+	io = require('socket.io')(server);
 
+/* Express initialization options */
 app.set('port', process.env.PORT || 8000);
 app.use(express.static(path.join(__dirname, './client')));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,17 +24,18 @@ app.use(morgan('dev'));
 app.use(methodOverride());
 app.use(cors());
 
+/* Connect Database Instance */
 mongoose.connect(config.db, function(error) {
 	if(error) console.log(error);
 	else console.log('Connected to planner database: ', config.db);
 });
 
-/* Routes for Passport Initialization */
-require('./server/routes.js')(app);
 
 /* BEGINNING OF THE ROUTER */ 
-
 var router = express.Router();
+
+/* Routes for Passport Initialization */
+require('./server/routes.js')(app);
 
 router.use(function(req, res, next) {
 	console.log('Request made');
@@ -68,7 +71,6 @@ router.route('/tasks')
 	});
 
 app.use('/planner', router);
-
 /* END OF ROUTER */
 
 server.listen(app.get('port'), function() {

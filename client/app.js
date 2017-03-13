@@ -20,9 +20,9 @@ app.controller('HomeController', function($scope, $http, socket, taskService) {
 	$scope.saved = [];
 	$scope.selectedTask = {};
 
-	socket.on('new-task', function() {
-		$scope.messages = msgService.query();
-	});
+	// socket.on('new-task', function() {
+	// 	$scope.messages = msgService.query();
+	// });
 
 	$scope.remove = function(task) {
 		var index = $scope.saved.indexOf(task);
@@ -40,15 +40,15 @@ app.factory('taskService', function($resource) {
 	return $resource('planner/tasks', {});
 });
 
-app.factory('socket', function($rootScope) {
-	var socket = io.connect();
+// app.factory('socket', function($rootScope) {
+// 	var socket = io.connect();
 
-	return {
-		on: function(eventName, callback) {
-			socket.on(eventName, callback);
-		},
-		emit: function(eventName, data) {
-			socket.emit(eventName, data);
-		}
-	}
-});
+// 	return {
+// 		on: function(eventName, callback) {
+// 			socket.on(eventName, callback);
+// 		},
+// 		emit: function(eventName, data) {
+// 			socket.emit(eventName, data);
+// 		}
+// 	}
+// });
