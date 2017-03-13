@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jasmine-node tests"
+    "test": "jasmine tests/test_task_spec.js"
   },
   "repository": {
     "type": "git",
