@@ -13,6 +13,8 @@ describe("tasks", function() {
 
         it("returns a list of tasks for a specific user", function(done) {
             request.get(base_url + 'tasks/user1', function(error, response, body) {
+                //make sure all tasks has an attached user with username user1
+
                 var correct = true;
 
                 var data = JSON.parse(body);
@@ -38,7 +40,12 @@ describe("tasks", function() {
 
         it("returns a specific task", function(done) {
             request.get(base_url + 'task/task1', function(error, response, body) {
-                expect(body[0].id).toBe(1);
+                var data = JSON.parse(body);
+
+                //makes sure the task is the task with id 1 and only 1 task is returned
+
+                expect(data[0].id).toBe(1);
+                expect(data.length).toBe(1);
                 done();
             });
         });
@@ -55,6 +62,8 @@ describe("tasks", function() {
                 var correct = true;
 
                 var data = JSON.parse(body);
+
+                //makes sure all tasks have priority 1
 
                 for(var i = 0; i < data.length; i++) {
                     var task = data[i];
