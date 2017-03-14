@@ -66,6 +66,32 @@ router.route('/tasks')
 		});
 	});
 
+
+router.route('/task/:task_id')
+	
+	.delete(function(req, res){
+		Task.remove({
+			_id: req.params.task_id 
+		}, function(err, task){
+			if(err)
+				console.log(err)
+
+			res.json({ message: "Successfully deleted task"})
+		})
+	})
+
+	.put(function(req, res){
+		Task.findById(req.params.task_id, function(err, task){
+			if(err)
+				console.log(err)
+
+			// still need to finish this part
+
+		})
+	})
+
+
+
 app.use('/planner', router);
 /* END OF ROUTER */
 
