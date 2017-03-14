@@ -5,7 +5,7 @@ app.config(function($routeProvider) {
 
 	$routeProvider
 	.when('/', {
-		templateUrl: '',
+		templateUrl: 'login.html',
 		controller: 'MainController'
 	})
 	.otherwise({
