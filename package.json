@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/cvhnilicka/CS506#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",

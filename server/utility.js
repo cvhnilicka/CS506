@@ -15,3 +15,12 @@ exports.createTask = function(req) {
 
 	return task;
 }
+
+exports.createUser = function(req) {
+	var user = new User();
+	user.username = req.body.username;
+	user.email = req.body.email;
+	user.password = req.body.password;
+	
+	return user;
+}
