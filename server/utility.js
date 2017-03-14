@@ -1,10 +1,13 @@
-var mongoose = require('mongoose'),
-	Task = require('./models/task.js'),
-	db = 'mongodb://localhost/planner',
-	secret = 'asdf8798sodfuoiu897sd9f87';
+var mongoose = require('mongoose');
+var	Task = require('./models/task.js');
+var User = require('./models/user.js');
 
-exports.db = db;
-exports.secret = secret;
+module.exports = {
+	db: 'mongodb://localhost/planner',
+	secret: 'qwertyuiop1234567890',
+	appRoute: './client',
+	testRoute: './server/testing'
+}	
 
 exports.createTask = function(req) {
 	var task = new Task();
