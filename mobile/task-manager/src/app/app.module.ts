@@ -26,3 +26,4 @@ import { Tasks } from '../providers/tasks';
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Tasks]
 })
 export class AppModule {}
+
