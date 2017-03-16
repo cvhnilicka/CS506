@@ -1,3 +1,8 @@
+function showValue(newValue)
+{
+	document.getElementById("range").innerHTML=newValue;
+}
+
 var app = angular.module('planner', ['ngRoute', 'ngResource']);
 
 app.config(function($routeProvider) {
