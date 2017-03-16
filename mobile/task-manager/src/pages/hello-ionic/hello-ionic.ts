@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavController} from 'ionic-angular';
+import {CreateNewTaskPage} from "../create-new-task/create-new-task";
 
 
 @Component({
@@ -6,7 +8,10 @@ import { Component } from '@angular/core';
   templateUrl: 'hello-ionic.html'
 })
 export class HelloIonicPage {
-  constructor() {
+  constructor(public navCtrl: NavController) {
 
+  }
+  createNewTaskTapped(){
+    this.navCtrl.push(CreateNewTaskPage);
   }
 }

@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 
+import { CreateNewTaskPage } from '../create-new-task/create-new-task';
 
 @Component({
   selector: 'page-list',
@@ -35,5 +36,8 @@ export class ListPage {
     this.navCtrl.push(ItemDetailsPage, {
       item: item
     });
+  }
+  createNewTaskTapped(){
+    this.navCtrl.push(CreateNewTaskPage);
   }
 }
