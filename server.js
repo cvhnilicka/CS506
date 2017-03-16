@@ -1,19 +1,19 @@
 /* Dependency Imports */
 var path = require('path'),
-	mongoose = require('mongoose'),
-	bodyParser = require('body-parser'),
-	methodOverride = require('method-override'),
-	morgan = require('morgan'),
-	cors = require('cors'),
-	express = require('express'),
+mongoose = require('mongoose'),
+bodyParser = require('body-parser'),
+methodOverride = require('method-override'),
+morgan = require('morgan'),
+cors = require('cors'),
+express = require('express'),
 
-	User = require('./server/models/user.js'),
-	Task = require('./server/models/task.js'),
-	Utility = require('./server/utility.js'),
+User = require('./server/models/user.js'),
+Task = require('./server/models/task.js'),
+Utility = require('./server/utility.js'),
 
-	app = express(),
-	server = require('http').Server(app),
-	io = require('socket.io')(server);
+app = express(),
+server = require('http').Server(app),
+io = require('socket.io')(server);
 
 /* Express initialization options */
 app.set('port', process.env.PORT || 8000);
@@ -47,28 +47,28 @@ router.get('/', function(req, res) {
 });
 
 router.route('/tasks')
-	.post(function(req, res) {
+.post(function(req, res) {
 
-		var task = Utility.createTask(req);
-		task.save(function(err) {
-			if(err) res.send(err);
-			else {
-				res.json({ message: 'Task created' });
+	var task = Utility.createTask(req);
+	task.save(function(err) {
+		if(err) res.send(err);
+		else {
+			res.json({ message: 'Task created' });
 				// io.sockets.emit('new-task', {});
 			}
 		});
-	})
+})
 
-	.get(function(req, res) {
-		Task.find(function(err, tasks) {
-			if(err) res.send(err);
-			else { res.json(tasks); }
-		});
+.get(function(req, res) {
+	Task.find(function(err, tasks) {
+		if(err) res.send(err);
+		else { res.json(tasks); }
 	});
+});
 
 
 router.route('/task/:task_id')
-	
+
 	.delete(function(req, res){
 		Task.remove({
 			_id: req.params.task_id 
@@ -85,10 +85,26 @@ router.route('/task/:task_id')
 			if(err)
 				console.log(err)
 
-			// still need to finish this part
+			task.description = req.body.description;
+			task.priority = req.body.priority;
+			task.time = req.body.date;
+			task.subtasks = req.body.subtasks;
+			task.save(function(err){
+				if(err) res.send(err);
+				else {
+					res.json({ message: 'Task updated' });
+				}
 
+			})
 		})
 	})
+	.get(function(req, res) {
+		Task.findById(req.params.task_id, function(err, task){
+			if(err)
+				console.log(err)
+			res.json(task);
+		})
+	});
 
 
 
