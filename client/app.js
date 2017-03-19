@@ -1,8 +1,3 @@
-function showValue(newValue)
-{
-	document.getElementById("range").innerHTML=newValue;
-}
-
 var app = angular.module('planner', ['ngRoute', 'ngResource']);
 
 app.config(function($routeProvider) {
@@ -24,6 +19,7 @@ app.controller('HomeController', function($scope, $http, socket, taskService) {
 	$scope.tasks = taskService.query();
 	$scope.saved = [];
 	$scope.selectedTask = {};
+	$scope.range = [1, 2, 3, 4, 5];
 
 	// socket.on('new-task', function() {
 	// 	$scope.messages = msgService.query();
