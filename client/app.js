@@ -1,3 +1,5 @@
+
+
 var app = angular.module('planner', ['ngRoute', 'ngResource']);
 
 app.config(function($routeProvider) {
@@ -14,10 +16,16 @@ app.config(function($routeProvider) {
 	
 });
 
-app.controller('HomeController', function($scope, $http, socket, taskService) {
+
+
+app.controller('HomeController', function($scope, $http, taskService) {
 	
-	$scope.tasks = taskService.query();
-	$scope.saved = [];
+	
+	
+	//$scope.tasks = taskService.query();
+	
+	$scope.tasks = [{done: true, name: "task1", due: "1/2/2016"}, {done: false, name: "task2", due: "3/2/2038"}];
+	$scope.saved = [{done: true, name: "task3", due: "1/2/2016"}, {done: false, name: "task4", due: "3/2/2038"}];
 	$scope.selectedTask = {};
 	$scope.range = [1, 2, 3, 4, 5];
 

@@ -36,3 +36,8 @@ background: linear-gradient(to left, #E8CBC0 , #636FA4); /* W3C, IE 10+/ Edge, F
 .header-button {
 	
 }
+
+.task-list-header {
+	font-size: 1.25em;
+	
+}

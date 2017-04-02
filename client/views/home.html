@@ -1,7 +1,7 @@
 	<div>
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4>Task List</h4>
+			<div class="panel-heading" >
+				<span class="task-list-header">Task List &nbsp &nbsp</span> <button  ng-click="add($index)" class="glyphicon glyphicon-plus"></button>
 			</div>
 			<form>
 				<div class="form-group">
@@ -15,23 +15,29 @@
 
 			<div class="panel-body task-container">
 			<table class="table table-striped">
-		        	<thead>
-					<tr>
-					<th>Options</th>
-					<th>Name</th>
-					<th>Timestamp</th>
-					<th>Priority</th>
-					<th>Due Date</th>
-					</tr>
-				</thead>
+		        	
 				<tbody>
-					<tr ng-repeat="task in tasks | filter : mSearch">
-					<td><button class="menu btn btn-xs btn-success"><i class="fa fa-check"></i></button><button class="menu btn btn-xs btn-primary"><i class="fa fa-edit"></i></button><button class="menu btn btn-xs btn-danger"><i class="fa fa-trash"><?</button></td>
-					<td>{{task.name}}</td>
-					<td>{{task.timestamp}}</td>
-					<td><span class="label label-warning">{{task.priority}}</span></td>
-					<td>{{task.due}}</td>
-					
+					<tr> 
+						<td></td>
+						<td>Task Name</td>
+						<td>Due Date</td>
+						<td>Priority</td>
+						<td><button  ng-click="add($index)" class="glyphicon glyphicon-plus"></button></td>
+						
+					</tr>
+					<tr ng-repeat="task in tasks track by $index " >
+										<td><input type="checkbox" ng-model="task.done[$index]" /></td>
+										<td>{{task.name}}</td>
+										<td>{{task.due}}</td>
+										<td> </td>
+										<td> <button ng-click="remove($index)" class="glyphicon glyphicon-minus"></button></td>
+					</tr>
+					<tr ng-repeat="task in saved track by $index">
+										<td><input type="checkbox" ng-model="task.done" /></td>
+										<td>{{task.name}}</td>
+										<td>{{task.due}}</td>
+										<td> </td>
+										<td> <button ng-click="remove($index)" class="glyphicon glyphicon-minus"></button></td>
 					</tr>
 				</tbody>
 			</table>
