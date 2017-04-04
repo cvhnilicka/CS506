@@ -5,6 +5,19 @@ function showValue(newValue)
 	document.getElementById("range").innerHTML=newValue;
 }
 
+function createAutoClosingAlert(message) {
+	const alert = document.createElement('div');
+	alert.className = 'alert alert-success fade in';
+
+	const content = document.createElement('div');
+	content.append(message);
+	alert.append(content);
+	window.setTimeout(function () {
+		jQuery(alert).hide();
+	}, 4000);
+	$('#alerts').append(alert);
+}
+
 app.config(function($routeProvider) {
 
 	'use strict';
@@ -48,7 +61,12 @@ app.controller('MyController', function($scope, $http, taskService) {
 			type: 'POST',
 			url: 'http://localhost:4567/tasks',
 			data: JSON.stringify({'due': $scope.dueDate, 'name': $scope.name, 'priority': $scope.priority, 'subtasks': $scope.subtasks})
+		}).done(function () {
+			createAutoClosingAlert('Successfully added task');
 		})
+			.fail(function (err) {
+				console.log(err);
+			});
 	}
 });
 
