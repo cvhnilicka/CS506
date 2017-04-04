@@ -1,7 +1,7 @@
 	<div>
 		<div class="panel panel-default">
 			<div class="panel-heading" >
-				<span class="task-list-header">Task List &nbsp &nbsp</span> <button  ng-click="add($index)" class="glyphicon glyphicon-plus"></button>
+				<span class="task-list-header">Task List &nbsp &nbsp</span> <a href="/#!/newTask" class="btn btn-default glyphicon glyphicon-plus"></a>
 			</div>
 			<form>
 				<div class="form-group">
@@ -26,17 +26,10 @@
 						
 					</tr>
 					<tr ng-repeat="task in tasks track by $index " >
-										<td><input type="checkbox" ng-model="task.done[$index]" /></td>
+										<td><input type="checkbox" ng-model="task.done" ng-change="complete($index)"/></td>
 										<td>{{task.name}}</td>
 										<td>{{task.due}}</td>
-										<td> </td>
-										<td> <button ng-click="remove($index)" class="glyphicon glyphicon-minus"></button></td>
-					</tr>
-					<tr ng-repeat="task in saved track by $index">
-										<td><input type="checkbox" ng-model="task.done" /></td>
-										<td>{{task.name}}</td>
-										<td>{{task.due}}</td>
-										<td> </td>
+										<td>{{task.priority}}</td>
 										<td> <button ng-click="remove($index)" class="glyphicon glyphicon-minus"></button></td>
 					</tr>
 				</tbody>
