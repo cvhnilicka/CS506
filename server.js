@@ -49,7 +49,11 @@ router.get('/', function(req, res) {
 router.route('/tasks')
 .post(function(req, res) {
 
-	var task = Utility.createTask(req);
+	var task = new Task();
+	task.description = req.body.description;
+	task.priority = req.body.priority;
+	task.time = req.body.date;
+	task.subtasks = req.body.subtasks;
 	task.save(function(err) {
 		if(err) res.send(err);
 		else {

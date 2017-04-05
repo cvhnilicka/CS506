@@ -25,10 +25,10 @@
 						<td><button  ng-click="add($index)" class="glyphicon glyphicon-plus"></button></td>
 						
 					</tr>
-					<tr ng-repeat="task in tasks track by $index " >
+					<tr ng-repeat="task in tasks" >
 										<td><input type="checkbox" ng-model="task.done" ng-change="complete($index)"/></td>
-										<td>{{task.name}}</td>
-										<td>{{task.due}}</td>
+										<td>{{task.description}}</td>
+										<td>{{task.time}}</td>
 										<td>{{task.priority}}</td>
 										<td> <button ng-click="remove($index)" class="glyphicon glyphicon-minus"></button></td>
 					</tr>

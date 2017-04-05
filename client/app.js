@@ -42,6 +42,32 @@ app.controller('MyController', function($scope, $http, taskService) {
 	$scope.subtasks = [{done: false, descr: "task description"}];
 	$scope.priority = 1;
 
+	//Testing Area ====================================================
+	$scope.tasks = taskService.query();
+	$scope.formData = {};
+
+	$scope.createTask = function() {
+		$http.post('/planner/tasks', $scope.formData)
+			.then(function(data) {
+				$scope.formData = {};
+			});
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//Testing Area ====================================================
 	$scope.addSubtask = function() {
 		$scope.subtasks.push({done: false, descr: "task description"});
 	}
@@ -59,7 +85,7 @@ app.controller('MyController', function($scope, $http, taskService) {
 
 		$.ajax({
 			type: 'POST',
-			url: 'http://localhost:4567/tasks',
+			url: 'http://localhost:8000/planner/tasks',
 			data: JSON.stringify({'due': $scope.dueDate, 'name': $scope.name, 'priority': $scope.priority, 'subtasks': $scope.subtasks})
 		}).done(function () {
 			createAutoClosingAlert('Successfully added task');
@@ -73,7 +99,7 @@ app.controller('MyController', function($scope, $http, taskService) {
 
 app.controller('HomeController', function($scope, $http, taskService, $window) {
 	//$scope.tasks = taskService.query();
-	$.getJSON('http://localhost:4567/tasks', function(data) {
+	$.getJSON('http://localhost:8000/planner/tasks', function(data) {
 		$scope.$apply(function(){
 			$scope.tasks = data;
 		});
