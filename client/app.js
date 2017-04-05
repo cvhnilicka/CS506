@@ -44,55 +44,20 @@ app.controller('MyController', function($scope, $http, taskService) {
 
 	//Testing Area ====================================================
 	$scope.tasks = taskService.query();
-	$scope.formData = {};
+	$scope.formData = {name: "", priority: 1};
+	$scope.subtasks = [];
 
 	$scope.createTask = function() {
 		$http.post('/planner/tasks', $scope.formData)
 			.then(function(data) {
-				$scope.formData = {};
+				$scope.formData = {name: "", priority: 1};
+				$scope.subtasks = [];
 			});
 	};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	//Testing Area ====================================================
 	$scope.addSubtask = function() {
 		$scope.subtasks.push({done: false, descr: "task description"});
-	}
-
-	$scope.add = function() {
-		var myDate = new Date($scope.due),
-		month = '' + (myDate.getMonth() + 1),
-			day = '' + myDate.getDate(),
-			year = myDate.getFullYear();
-
-		if (month.length < 2) month = '0' + month;
-		if (day.length < 2) day = '0' + day;
-
-		$scope.dueDate =  [year, month, day].join('-');
-
-		$.ajax({
-			type: 'POST',
-			url: 'http://localhost:8000/planner/tasks',
-			data: JSON.stringify({'due': $scope.dueDate, 'name': $scope.name, 'priority': $scope.priority, 'subtasks': $scope.subtasks})
-		}).done(function () {
-			createAutoClosingAlert('Successfully added task');
-		})
-			.fail(function (err) {
-				console.log(err);
-			});
 	}
 });
 
@@ -101,6 +66,18 @@ app.controller('HomeController', function($scope, $http, taskService, $window) {
 	//$scope.tasks = taskService.query();
 	$.getJSON('http://localhost:8000/planner/tasks', function(data) {
 		$scope.$apply(function(){
+			data.forEach(function(element) {
+				var myDate = new Date(element.time),
+					month = '' + (myDate.getMonth() + 1),
+					day = '' + myDate.getDate(),
+					year = myDate.getFullYear();
+
+				if (month.length < 2) month = '0' + month;
+				if (day.length < 2) day = '0' + day;
+
+				element.time =  [year, month, day].join('-');
+			});
+
 			$scope.tasks = data;
 		});
 	});
