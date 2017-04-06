@@ -24,13 +24,15 @@
 						<td>Due Date</td>
 						<td>Priority</td>
 						<td></td>
+						<td></td>
 						
 					</tr>
-					<tr ng-repeat="task in tasks" >
+					<tr ng-repeat="task in tasks track by $index" >
 										<td><input type="checkbox" ng-model="task.completed" ng-change="complete($index)"/></td>
 										<td>{{task.description}}</td>
 										<td>{{task.time}}</td>
 										<td>{{task.priority}}</td>
+										<td> <button ng-click="edit(task._id)" class="glyphicon glyphicon-pencil"></button></td>
 										<td> <button ng-click="remove($index)" class="glyphicon glyphicon-minus"></button></td>
 					</tr>
 				</tbody>

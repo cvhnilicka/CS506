@@ -22,7 +22,7 @@
 
     					<label for="priority">Please prioritize your task:</label>
 						<input type="range" name="points" id="priority" value="1" min="1" max="5" onchange="showValue(this.value)" ng-model="formData.priority">
-						<span id="range">1</span>
+						<span id="range">{{formData.priority}}</span>
 						<br>
 						<br>
 						<label for="due">Please enter in the due date:</label>
@@ -50,7 +50,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<button ng-click="createTask()" class="btn btn-primary pull-left">Submit</button>
+							<button ng-click="operation()" class="btn btn-primary pull-left">Submit</button>
 						</div>
 						<div class="col-md-2"></div>
 						<div class="col-md-4">

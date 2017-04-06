@@ -29,8 +29,14 @@ app.config(function($routeProvider) {
 	})
 		.when('/newTask', {
 			templateUrl: 'views/task.html',
-			controller: 'MyController'
+			controller: 'NewTaskController'
 		})
+		.when('/task/:id', {
+			templateUrl: 'views/task.html',
+			controller: 'UpdateTaskController'
+		})
+
+
 
 	.otherwise({
 		redirectTo: '/'
@@ -38,13 +44,39 @@ app.config(function($routeProvider) {
 	
 });
 
-app.controller('MyController', function($scope, $http, taskService) {
+app.controller('UpdateTaskController', function($scope, $http, taskService, $routeParams) {
+	$scope.id = $routeParams.id;
+
+	$.getJSON('http://localhost:8000/planner/task/' + $scope.id, function(data) {
+		$scope.$apply(function(){
+			$scope.formData = data;
+			$scope.formData.date = new Date(data.time);
+			$scope.subtasks = data.subtasks;
+		});
+	});
+
+	$scope.addSubtask = function() {
+		$scope.subtasks.push({done: false, descr: "task description"});
+	}
+
+	$scope.operation = function() {
+		$scope.formData.subtasks = $scope.subtasks;
+
+		$http.put('/planner/task/' + $scope.formData._id, $scope.formData)
+			.then(function(data) {
+				createAutoClosingAlert("successfully updated " + $scope.formData.description);
+			});
+	}
+});
+
+app.controller('NewTaskController', function($scope, $http, taskService) {
 	//Testing Area ====================================================
-	$scope.tasks = taskService.query();
 	$scope.formData = {name: "", priority: 1};
 	$scope.subtasks = [];
 
-	$scope.createTask = function() {
+	$scope.operation = function() {
+		$scope.formData.subtasks = $scope.subtasks;
+
 		$http.post('/planner/tasks', $scope.formData)
 			.then(function(data) {
 				$scope.formData = {name: "", priority: 1};
@@ -62,6 +94,7 @@ app.controller('MyController', function($scope, $http, taskService) {
 
 app.controller('HomeController', function($scope, $http, taskService, $window) {
 	//$scope.tasks = taskService.query();
+
 	$.getJSON('http://localhost:8000/planner/tasks', function(data) {
 		$scope.$apply(function(){
 			data.forEach(function(element) {
@@ -99,9 +132,6 @@ app.controller('HomeController', function($scope, $http, taskService, $window) {
 					createAutoClosingAlert('Successfully reopened ' + $scope.tasks[index].description);
 				}
 			});
-
-
-		$scope.tasks[index].time = temp;
 	}
 
 	$scope.remove = function(task)
@@ -110,6 +140,12 @@ app.controller('HomeController', function($scope, $http, taskService, $window) {
 
 		$scope.tasks.splice(task, 1);
 	};
+
+	$scope.edit = function(task_id) {
+		$window.location.href = '/#!/task/' + task_id;
+	}
+
+
 });
 
 app.factory('taskService', function($resource) {
