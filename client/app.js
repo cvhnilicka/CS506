@@ -39,9 +39,6 @@ app.config(function($routeProvider) {
 });
 
 app.controller('MyController', function($scope, $http, taskService) {
-	$scope.subtasks = [{done: false, descr: "task description"}];
-	$scope.priority = 1;
-
 	//Testing Area ====================================================
 	$scope.tasks = taskService.query();
 	$scope.formData = {name: "", priority: 1};
@@ -52,12 +49,13 @@ app.controller('MyController', function($scope, $http, taskService) {
 			.then(function(data) {
 				$scope.formData = {name: "", priority: 1};
 				$scope.subtasks = [];
+				createAutoClosingAlert('Successfully created task');
 			});
 	};
 
 	//Testing Area ====================================================
 	$scope.addSubtask = function() {
-		$scope.subtasks.push({done: false, descr: "task description"});
+		$scope.subtasks.push({completed: false, descr: "task description"});
 	}
 });
 
@@ -67,6 +65,8 @@ app.controller('HomeController', function($scope, $http, taskService, $window) {
 	$.getJSON('http://localhost:8000/planner/tasks', function(data) {
 		$scope.$apply(function(){
 			data.forEach(function(element) {
+				element.date = element.time;
+
 				var myDate = new Date(element.time),
 					month = '' + (myDate.getMonth() + 1),
 					day = '' + myDate.getDate(),
@@ -82,9 +82,6 @@ app.controller('HomeController', function($scope, $http, taskService, $window) {
 		});
 	});
 
-	//$scope.tasks = [{done: true, name: "task1", due: "1/2/2016"}, {done: false, name: "task2", due: "3/2/2038"}];
-	//$scope.saved = [{done: true, name: "task3", due: "1/2/2016"}, {done: false, name: "task4", due: "3/2/2038"}];
-
 	$scope.selectedTask = {};
 	$scope.range = [1, 2, 3, 4, 5];
 
@@ -93,20 +90,23 @@ app.controller('HomeController', function($scope, $http, taskService, $window) {
 	// });
 
 	$scope.complete = function(index) {
-		$.ajax({
-			type: 'POST',
-			url: 'http://localhost:4567/complete',
-			data: JSON.stringify({'index': index})
-		})
+
+		$http.put('/planner/task/' + $scope.tasks[index]._id, $scope.tasks[index])
+			.then(function(data) {
+				if($scope.tasks[index].completed) {
+					createAutoClosingAlert('Successfully completed ' + $scope.tasks[index].description);
+				} else {
+					createAutoClosingAlert('Successfully reopened ' + $scope.tasks[index].description);
+				}
+			});
+
+
+		$scope.tasks[index].time = temp;
 	}
 
 	$scope.remove = function(task)
 	{
-		$.ajax({
-			type: 'POST',
-			url: 'http://localhost:4567/rtasks',
-			data: JSON.stringify({'index': task})
-		})
+		$http.delete('/planner/task/' + $scope.tasks[task]._id);
 
 		$scope.tasks.splice(task, 1);
 	};

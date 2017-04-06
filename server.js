@@ -93,6 +93,7 @@ router.route('/task/:task_id')
 			task.priority = req.body.priority;
 			task.time = req.body.date;
 			task.subtasks = req.body.subtasks;
+			task.completed = req.body.completed;
 			task.save(function(err){
 				if(err) res.send(err);
 				else {

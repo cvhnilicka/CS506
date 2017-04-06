@@ -34,6 +34,10 @@ var TaskSchema = new Schema({
 	subtasks: {
 		type: [ this ],
 		default: []
+	},
+	completed: {
+		type: Boolean,
+		default: false
 	}
 });
 
