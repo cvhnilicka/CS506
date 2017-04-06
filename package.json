@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jasmine tests/test_task_spec.js"
+    "test": "istanbul --include-all-sources cover node_modules/jasmine/bin/jasmine.js tests/test_task_spec.js"
   },
   "repository": {
     "type": "git",
