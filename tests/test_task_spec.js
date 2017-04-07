@@ -4,10 +4,39 @@ var webdriver = require('selenium-webdriver');
 var base_url = "http://localhost:8000/planner/"
 require('chromedriver');
 
+
+describe("new task to prevent original error", function() {
+    beforeEach(function(){
+        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
+
+    });
+    it("adding a new task", function(done) {
+        var browser2 = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
+        browser2.get('http://localhost:8000/#!/newTask');
+
+        browser2.findElement(webdriver.By.id('due')).sendKeys('3/14/2018');
+        browser2.findElement(webdriver.By.id('description')).sendKeys('ajsdllasjdklja');
+        browser2.findElement(webdriver.By.id('addsub')).click();
+        browser2.findElement(webdriver.By.id('addsub')).click();
+        browser2.findElement(webdriver.By.id('addsub')).click();
+        browser2.findElement(webdriver.By.id('submit')).click();
+
+        browser2.findElement(webdriver.By.className('alert')).getText().then(function(text){
+            expect(text).toEqual('Successfully created task');
+            browser2.quit();
+            done();
+        });
+    });
+});
+
 describe("tasks", function() {
     var tasks;
 
     beforeEach(function(){
+        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
+
         request.get(base_url + 'tasks/', function(error, response, body) {
             tasks = JSON.parse(body);
         });
@@ -85,6 +114,8 @@ describe("tasks", function() {
         });
     });
 
+
+
     describe("front end tests", function() {
         var tasks;
 
@@ -114,25 +145,54 @@ describe("tasks", function() {
             });
         });
 
-        it("adding a new task", function(done) {
-            var browser2 = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
-            browser2.get('http://localhost:8000/#!/newTask');
+        it("Edit a Task", function(done) {
 
-            browser2.findElement(webdriver.By.id('due')).sendKeys('3/14/2018');
-            browser2.findElement(webdriver.By.id('description')).sendKeys('ajsdllasjdklja');
-            browser2.findElement(webdriver.By.id('addsub')).click();
-            browser2.findElement(webdriver.By.id('addsub')).click();
-            browser2.findElement(webdriver.By.id('addsub')).click();
-            browser2.findElement(webdriver.By.id('submit')).click();
+            var task = tasks[0];
 
-            browser2.findElement(webdriver.By.className('alert')).getText().then(function(text){
-                expect(text).toEqual('Successfully created task');
-                browser2.quit();
-                done();
+            var browser3 = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
+            browser3.get('http://localhost:8000/');
+
+            browser3.findElement(webdriver.By.id('edit_' + task._id)).then(function(button) {
+                button.click();
             });
+
+            browser3.findElement(webdriver.By.id('addsub')).click();
+            browser3.findElement(webdriver.By.id('addsub')).click();
+            browser3.findElement(webdriver.By.id('submit')).click();
+
+
+            browser3.quit();
+            done();
         });
 
+        it("Complete a Task", function(done) {
+
+            var task = tasks[0];
+
+            var browser4 = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
+            browser4.get('http://localhost:8000/');
+
+            browser4.findElement(webdriver.By.id('complete_' + task._id)).then(function(button) {
+                button.click();
+            });
+
+            browser4.quit();
+            done();
+        });
+
+        it("Delete a Task", function(done) {
+
+            var task = tasks[0];
+
+            var browser4 = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
+            browser4.get('http://localhost:8000/');
+
+            browser4.findElement(webdriver.By.id('delete_' + task._id)).then(function(button) {
+                button.click();
+            });
+
+            browser4.quit();
+            done();
+        });
     });
-
-
 });

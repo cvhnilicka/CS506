@@ -1,10 +1,5 @@
 var app = angular.module('planner', ['ngRoute', 'ngResource']);
 
-function showValue(newValue)
-{
-	document.getElementById("range").innerHTML=newValue;
-}
-
 function createAutoClosingAlert(message) {
 	const alert = document.createElement('div');
 	alert.className = 'alert alert-success fade in';
