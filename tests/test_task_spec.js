@@ -1,6 +1,8 @@
 var request = require("request");
 var server = require("../server.js")
+var webdriver = require('selenium-webdriver');
 var base_url = "http://localhost:8000/planner/"
+require('chromedriver');
 
 describe("tasks", function() {
     var tasks;
@@ -82,4 +84,55 @@ describe("tasks", function() {
             });
         });
     });
+
+    describe("front end tests", function() {
+        var tasks;
+
+        var originalTimeout;
+
+        beforeEach(function(){
+            request.get(base_url + 'tasks/', function(error, response, body) {
+                tasks = JSON.parse(body);
+            });
+            originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+            jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
+        });
+
+        it("clicking + gets you to new task page", function(done) {
+            var browser = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
+            browser.get('http://localhost:8000');
+
+            browser.findElement(webdriver.By.id('add')).then(function(button) {
+                button.click();
+            });
+
+
+            browser.findElement(webdriver.By.id('title')).getText().then(function(text){
+                expect(text).toEqual('Create Task');
+                browser.quit();
+                done();
+            });
+        });
+
+        it("adding a new task", function(done) {
+            var browser2 = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
+            browser2.get('http://localhost:8000/#!/newTask');
+
+            browser2.findElement(webdriver.By.id('due')).sendKeys('3/14/2018');
+            browser2.findElement(webdriver.By.id('description')).sendKeys('ajsdllasjdklja');
+            browser2.findElement(webdriver.By.id('addsub')).click();
+            browser2.findElement(webdriver.By.id('addsub')).click();
+            browser2.findElement(webdriver.By.id('addsub')).click();
+            browser2.findElement(webdriver.By.id('submit')).click();
+
+            browser2.findElement(webdriver.By.className('alert')).getText().then(function(text){
+                expect(text).toEqual('Successfully created task');
+                browser2.quit();
+                done();
+            });
+        });
+
+    });
+
+
 });

@@ -3,7 +3,7 @@
     		<div class="panel panel-default">
     			<div class="panel-heading">
 					<div id="alerts">
-    				<h4>Create Task</h4>
+    				<h4 id="title">Create Task</h4>
     				<form>
     					<div class="form-group">
     					  <div class="input-group">
@@ -21,7 +21,7 @@
 
 
     					<label for="priority">Please prioritize your task:</label>
-						<input type="range" name="points" id="priority" value="1" min="1" max="5" onchange="showValue(this.value)" ng-model="formData.priority">
+						<input type="range" name="points" id="priority" value="1" min="1" max="5" ng-model="formData.priority">
 						<span id="range">{{formData.priority}}</span>
 						<br>
 						<br>
@@ -50,11 +50,11 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<button ng-click="operation()" class="btn btn-primary pull-left">Submit</button>
+							<button ng-click="operation()" class="btn btn-primary pull-left" id="submit">Submit</button>
 						</div>
 						<div class="col-md-2"></div>
 						<div class="col-md-4">
-							<button class="btn btn-primary pull-right" ng-click="addSubtask()">Add a Subtask</button>
+							<button class="btn btn-primary pull-right" ng-click="addSubtask()" id="addsub">Add a Subtask</button>
 						</div>
 					</div>
     			</div>
