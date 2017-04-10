@@ -104,6 +104,8 @@ app.controller('HomeController', function($scope, $http, taskService, $window) {
 				if (day.length < 2) day = '0' + day;
 
 				element.time =  [year, month, day].join('-');
+
+				element.urgent = element.priority > 3;
 			});
 
 			$scope.tasks = data;

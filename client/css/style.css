@@ -11,6 +11,10 @@ background: linear-gradient(to left, #E8CBC0 , #636FA4); /* W3C, IE 10+/ Edge, F
 	border-radius: 0 !important;
 }
 
+.urgent {
+	background-color: salmon;
+}
+
 .task-container {
 	height: 520px;
 	overflow-y: scroll;
