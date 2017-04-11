@@ -1,0 +1,324 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Hello Ionic</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <!-- Search bar & Add new task-->
+  <ion-item>
+    <!-- Search bar -->
+    <ion-searchbar (ionInput)="getItems($event)" item-right></ion-searchbar>
+    <ion-list>
+      <ion-item *ngFor="let item of items">
+        {{ item }}
+      </ion-item>
+    </ion-list>
+    <!-- Add new task -->
+    <ion-icon name="add-circle" item-right></ion-icon>
+    <p>
+
+    </p>
+  </ion-item>
+
+  <!-- Multi-line list -->
+  <!-- This is tasks of the first category -->
+  <!-- It can consist of several tasks of the same category-->
+  <ion-list>
+    <!-- Task 1 -->
+    <ion-item-sliding #item>
+      <ion-item>
+        <ion-avatar item-left>
+          <ion-icon name="closed-captioning" item-right></ion-icon>
+          <!--
+          <img src="img/CS506.png">
+          -->
+        </ion-avatar>
+        <h2>412</h2>
+        <h3>Due Date: 2017-04-11 </h3>
+        <h3>Priority: 2  </h3>
+        <p></p>
+      </ion-item>
+      <!-- Slide to delete and edit-->
+      <ion-item-options side="left">
+        <button ion-button (click)="favorite(item)">
+          Finish
+        </button>
+        <button ion-button color="danger" (click)="share(item)">
+          Delete
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button (click)="unread(item)">
+          Edit   
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+        <!-- Task 1 -->
+    <ion-item-sliding #item>
+      <ion-item>
+        <ion-avatar item-left>
+          <ion-icon name="closed-captioning" item-right></ion-icon>
+          <!--
+          <img src="img/CS506.png">
+          -->
+        </ion-avatar>
+        <h2>640 test</h2>
+        <h3>Due Date: 2017-04-13 </h3>
+        <h3>Priority: 4  </h3>
+        <p></p>
+      </ion-item>
+      <!-- Slide to delete and edit-->
+      <ion-item-options side="left">
+        <button ion-button (click)="favorite(item)">
+          Favorite
+        </button>
+        <button ion-button color="danger" (click)="share(item)">
+          Share
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button (click)="unread(item)">
+          Unread
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+        <!-- Task 1 -->
+    <ion-item-sliding #item>
+      <ion-item>
+        <ion-avatar item-left>
+          <ion-icon name="closed-captioning" item-right></ion-icon>
+          <!--
+          <img src="img/CS506.png">
+          -->
+        </ion-avatar>
+        <h2>640 program</h2>
+        <h3>Due Date: 2017-04-18 </h3>
+        <h3>Priority: 3  </h3>
+        <p></p>
+      </ion-item>
+      <!-- Slide to delete and edit-->
+      <ion-item-options side="left">
+        <button ion-button (click)="favorite(item)">
+          Favorite
+        </button>
+        <button ion-button color="danger" (click)="share(item)">
+          Share
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button (click)="unread(item)">
+          Unread
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+        <!-- Task 1 -->
+    <ion-item-sliding #item>
+      <ion-item>
+        <ion-avatar item-left>
+          <ion-icon name="closed-captioning" item-right></ion-icon>
+          <!--
+          <img src="img/CS506.png">
+          -->
+        </ion-avatar>
+        <h2>412 exam</h2>
+        <h3>Due Date: 2017-05-04 </h3>
+        <h3>Priority: 5  </h3>
+        <p></p>
+      </ion-item>
+      <!-- Slide to delete and edit-->
+      <ion-item-options side="left">
+        <button ion-button (click)="favorite(item)">
+          Favorite
+        </button>
+        <button ion-button color="danger" (click)="share(item)">
+          Share
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button (click)="unread(item)">
+          Unread
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+        <!-- Task 1 -->
+    <ion-item-sliding #item>
+      <ion-item>
+        <ion-avatar item-left>
+          <ion-icon name="closed-captioning" item-right></ion-icon>
+          <!--
+          <img src="img/CS506.png">
+          -->
+        </ion-avatar>
+        <h2>Presentation of Project Outcomes and Lessons Learned </h2>
+        <h3>Due Date: 2017-04-20 </h3>
+        <h3>Priority: 2  </h3>
+        <p></p>
+      </ion-item>
+      <!-- Slide to delete and edit-->
+      <ion-item-options side="left">
+        <button ion-button (click)="favorite(item)">
+          Favorite
+        </button>
+        <button ion-button color="danger" (click)="share(item)">
+          Share
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button (click)="unread(item)">
+          Unread
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+        <!-- Task 1 -->
+    <ion-item-sliding #item>
+      <ion-item>
+        <ion-avatar item-left>
+          <ion-icon name="closed-captioning" item-right></ion-icon>
+          <!--
+          <img src="img/CS506.png">
+          -->
+        </ion-avatar>
+        <h2>506 delta debugging garbage</h2>
+        <h3>Due Date: 2017-4-24 </h3>
+        <h3>Priority: 2  </h3>
+        <p></p>
+      </ion-item>
+      <!-- Slide to delete and edit-->
+      <ion-item-options side="left">
+        <button ion-button (click)="favorite(item)">
+          Favorite
+        </button>
+        <button ion-button color="danger" (click)="share(item)">
+          Share
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button (click)="unread(item)">
+          Unread
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+
+  </ion-list>
+
+  <!-- Previouse Design -->
+  <ion-list>
+    <!-- Task 2 -->
+    <ion-item>
+      <ion-avatar item-left>
+        <ion-icon name="closed-captioning" item-right></ion-icon>
+        <!--
+        <img src="img/CS506.png">
+        -->
+      </ion-avatar>
+      <h2>CS367 HW 2</h2>
+      <h3>Easy </h3>
+      <p></p>
+      <!-- Check for finished or not -->
+      <button ion-button [color]="myColor2" [outline]="isOutline" [round]="isRound" item-right> 
+        Delete
+      </button>
+
+    </ion-item>
+
+    <!-- Properties of the task -->
+    <ion-row>
+      <!-- Range of progress-->
+      <ion-col>
+        <ion-range [(ngModel)]="brightness" item-left>
+          <ion-icon range-left small name="sunny" ></ion-icon>
+          <ion-icon range-right name="sunny"></ion-icon>
+        </ion-range>
+      </ion-col>
+
+      <!-- Importance of progress-->
+      <ion-col>
+        <ion-range [(ngModel)]="brightness" item-left>
+          <ion-icon range-left small name="sunny" ></ion-icon>
+          <ion-icon range-right name="sunny"></ion-icon>
+        </ion-range>
+      </ion-col>
+      
+      <!-- Due date-->
+      <ion-col center text-center>
+        <ion-note>
+          5 wks
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+
+  <ion-list>
+    <!-- Task 3 -->
+    <ion-item>
+      <ion-avatar item-left>
+        <ion-icon name="closed-captioning" item-right></ion-icon>
+        <!--
+        <img src="img/CS506.png">
+        -->
+      </ion-avatar>
+      <h2>CS767 Project 2</h2>
+      <h3>Group </h3>
+      <p></p>
+      <!-- Check for finished or not -->
+      <button ion-button [color]="myColor2" [outline]="isOutline" [round]="isRound" item-right> 
+        Delete
+      </button>
+
+    </ion-item>
+
+    <!-- Properties of the task -->
+    <ion-row>
+      <!-- Range of progress-->
+      <ion-col>
+        <ion-range [(ngModel)]="brightness" item-left>
+          <ion-icon range-left small name="sunny" ></ion-icon>
+          <ion-icon range-right name="sunny"></ion-icon>
+        </ion-range>
+      </ion-col>
+
+      <!-- Importance of progress-->
+      <ion-col>
+        <ion-range [(ngModel)]="brightness" item-left>
+          <ion-icon range-left small name="sunny" ></ion-icon>
+          <ion-icon range-right name="sunny"></ion-icon>
+        </ion-range>
+      </ion-col>
+      
+      <!-- Due date-->
+      <ion-col center text-center>
+        <ion-note>
+          2 day
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+ 
+
+  <button ion-button color="primary" icon-left left>
+    <ion-icon name="arrow-down">
+    </ion-icon>
+    By Progress
+  </button>
+  <button ion-button color="primary" icon-left right>
+    <ion-icon name="arrow-up">
+    </ion-icon>
+    By Urgency
+  </button>
+
+
+</ion-content>
