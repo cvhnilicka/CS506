@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Task List</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="createNewTaskTapped()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar></ion-searchbar>
+  <ion-list>
+
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-icon name="{{item.icon}}" item-left></ion-icon>
+      {{item.title}}
+      <div class="item-note" item-right>
+
+      </div>
+    </button>
+
+
+
+  </ion-list>
+  <div *ngIf="selectedItem" padding>
+    <b>{{selectedItem.title}}</b>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+
+</ion-footer>

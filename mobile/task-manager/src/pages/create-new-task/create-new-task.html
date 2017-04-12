@@ -1,0 +1,89 @@
+<!--
+  Generated template for the CreateNewTask page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- comments-->
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle item-left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Create New Task</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-label >Task Name</ion-label>
+    <ion-item>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+  <ion-label>Priority</ion-label>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+         <ion-label><p>Urgent</p></ion-label>
+          <ion-checkbox color="primary" checked="false"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-item>
+          <ion-label><p>High</p></ion-label>
+          <ion-checkbox color="primary" checked="false"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-item>
+          <ion-label><p>Moderate</p></ion-label>
+          <ion-checkbox color="primary" checked="false"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-item>
+          <ion-label><p>Low</p></ion-label>
+          <ion-checkbox color="primary" checked="false"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-label >Due Date and Time</ion-label>
+  <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime displayFormat="MMM DD YYYY"> [p</ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Time</ion-label>
+    <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
+  </ion-item>
+
+  <ion-label >Subtasks</ion-label>
+  <ion-item>
+    <ion-label>1.</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>2.</ion-label>
+    <ion-input type="text">2.</ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>3.</ion-label>
+    <ion-input type="text">3.</ion-input>
+  </ion-item>
+
+  <ion-label>Notes</ion-label>
+  <ion-input type="text"></ion-input>
+
+  <button ion-button full color="dark"><ion-icon name="add"></ion-icon></button>
+
+
+</ion-content>

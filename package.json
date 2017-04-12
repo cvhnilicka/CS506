@@ -1,0 +1,44 @@
+{
+  "name": "cs506",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "istanbul --include-all-sources cover node_modules/jasmine/bin/jasmine.js tests/test_task_spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvhnilicka/CS506.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cvhnilicka/CS506/issues"
+  },
+  "homepage": "https://github.com/cvhnilicka/CS506#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.1",
+    "express": "^4.14.1",
+    "express-session": "^1.15.1",
+    "http": "0.0.0",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.8.1",
+    "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0",
+    "path": "^0.12.7",
+    "request": "^2.81.0",
+    "socket.io": "^1.7.2"
+  },
+  "devDependencies": {
+    "chromedriver": "^2.29.0",
+    "jasmine": "~2.5.3",
+    "jasmine-node": "^1.14.5",
+    "request": "~2.81.0",
+    "selenium-webdriver": "^3.3.0"
+  }
+}

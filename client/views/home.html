@@ -1,0 +1,59 @@
+<div id="alerts"></div>
+<div>
+		<div class="panel panel-default">
+			<div class="panel-heading" >
+				<span class="task-list-header">Task List &nbsp &nbsp</span> <a href="/#!/newTask" class="btn btn-default glyphicon glyphicon-plus" id="add"></a>
+			</div>
+			<form>
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-search"></i>
+						</div>
+						<input class="form-control" type="text" ng-model="mSearch" placeholder="Search">
+					</div>
+				</div>
+			</form>
+
+			<div class="panel-body task-container">
+			<table class="table table-striped">
+		        	
+				<tbody>
+					<tr> 
+						<td></td>
+						<td>Task Name</td>
+						<td>Due Date</td>
+						<td>Priority</td>
+						<td></td>
+						<td></td>
+						
+					</tr>
+					<tr ng-repeat="task in tasks track by $index">
+										<td ng-class="{urgent: task.urgent}"><input type="checkbox" ng-model="task.completed" ng-change="complete($index)" id="complete_{{task._id}}"/></td>
+										<td ng-class="{urgent: task.urgent}">{{task.description}}</td>
+										<td ng-class="{urgent: task.urgent}">{{task.time}}</td>
+										<td ng-class="{urgent: task.urgent}">{{task.priority}}</td>
+										<td ng-class="{urgent: task.urgent}"> <button ng-click="edit(task._id)" class="glyphicon glyphicon-pencil" id="edit_{{task._id}}"></button></td>
+										<td ng-class="{urgent: task.urgent}"> <button ng-click="remove($index)" class="glyphicon glyphicon-minus" id="remove_{{task._id}}"></button></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-lg-6">
+    		<div class="panel panel-default">
+    			<div class="panel-heading">
+					<div id="alerts">
+    				<h4 id="title">Create Task</h4>
+    				<form>
+    					<div class="form-group">
+    					  <div class="input-group">
+    					    <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+    					    <input id="description" type="text" class="form-control" ng-model="formData.description" name="description" placeholder="Task name">
+							  <h4 style="display: none" id="check-edit">{{formData.description}}</h4>
+						  </div>
+
+    					</div>
+    				</form>
+
+    			</div>
+    			<div class="panel-body">
+					<div class="row">
+    				<div class="col-md-6">
+
+
+    					<label for="priority">Please prioritize your task:</label>
+						<input type="range" name="points" id="priority" value="1" min="1" max="5" ng-model="formData.priority">
+						<span id="range">{{formData.priority}}</span>
+						<br>
+						<br>
+						<label for="due">Please enter in the due date:</label>
+						<input id="due" type="date" name="due" ng-model="formData.date"/>
+						<br>
+						<br>
+						<br>
+
+    				</div>
+					<div class="col-md-2"></div>
+					<div class="col-md-4">
+
+						<label>List of Subtasks:</label> <br><br>
+
+						<div class="row pull-left" ng-repeat="subtask in subtasks">
+
+								<input type="checkbox" ng-model="subtask.done"/>
+
+
+								<input id="descr" type="text" name="descr" ng-model="subtask.descr"/>
+								<br><br>
+						</div>
+						<br>
+					</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<button ng-click="operation()" class="btn btn-primary pull-left" id="submit">Submit</button>
+						</div>
+						<div class="col-md-2"></div>
+						<div class="col-md-4">
+							<button class="btn btn-primary pull-right" ng-click="addSubtask()" id="addsub">Add a Subtask</button>
+						</div>
+					</div>
+    			</div>
+    		</div>
+		</div>
+	</div>
