@@ -41,6 +41,7 @@ app.config(function($routeProvider) {
 
 app.controller('UpdateTaskController', function($scope, $http, taskService, $routeParams) {
 	$scope.id = $routeParams.id;
+	$scope.title = "Update Task"
 
 	$.getJSON('http://localhost:8000/planner/task/' + $scope.id, function(data) {
 		$scope.$apply(function(){
@@ -65,6 +66,8 @@ app.controller('UpdateTaskController', function($scope, $http, taskService, $rou
 });
 
 app.controller('NewTaskController', function($scope, $http, taskService) {
+	$scope.title = "Create Task"
+
 	//Testing Area ====================================================
 	$scope.formData = {name: "", priority: 1};
 	$scope.subtasks = [];
@@ -97,13 +100,12 @@ app.controller('HomeController', function($scope, $http, taskService, $window) {
 
 				var myDate = new Date(element.time),
 					month = '' + (myDate.getMonth() + 1),
-					day = '' + myDate.getDate(),
-					year = myDate.getFullYear();
+					day = '' + myDate.getDate();
 
 				if (month.length < 2) month = '0' + month;
 				if (day.length < 2) day = '0' + day;
 
-				element.time =  [year, month, day].join('-');
+				element.time =  [month, day].join('-');
 
 				element.urgent = element.priority > 3;
 			});
