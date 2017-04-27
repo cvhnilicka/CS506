@@ -100,14 +100,19 @@ app.controller('HomeController', function($scope, $http, taskService, $window) {
 
 				var myDate = new Date(element.time),
 					month = '' + (myDate.getMonth() + 1),
-					day = '' + myDate.getDate();
+					day = '' + myDate.getDate(),
+					myDateMilSec = myDate.getTime();
 
 				if (month.length < 2) month = '0' + month;
 				if (day.length < 2) day = '0' + day;
 
 				element.time =  [month, day].join('-');
 
-				element.urgent = element.priority > 3;
+				var curDate = new Date(),
+					curDateMilSec = curDate.getTime();
+				var urgentMilSec = 3 * 24 * 60 * 60 * 1000;
+
+				element.urgent = element.priority > 3 || (myDateMilSec-curDateMilSec) < urgentMilSec;
 			});
 
 			$scope.tasks = data;
