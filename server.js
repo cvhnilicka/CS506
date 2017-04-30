@@ -46,6 +46,20 @@ router.get('/', function(req, res) {
 	res.json({ message: 'Task logging API' });
 });
 
+router.route('/tasks/search')
+	.get(function(req, res) {
+		var query = req.body.query;
+		Task.find({
+			"description" : {"$regex": query, "$options": "i"}
+		}, function(err, found) {
+			if(err)
+				res.send(err)
+			else
+				res.json(found);
+			console.log("QUERIED FOR " + query)
+		})
+	})
+
 router.route('/tasks')
 .post(function(req, res) {
 
