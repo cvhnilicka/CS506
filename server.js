@@ -47,7 +47,7 @@ router.get('/', function(req, res) {
 });
 
 router.route('/tasks/search')
-	.get(function(req, res) {
+	.post(function(req, res) {
 		var query = req.body.query;
 		Task.find({
 			"description" : {"$regex": query, "$options": "i"}

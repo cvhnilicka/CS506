@@ -92,7 +92,7 @@ app.controller('NewTaskController', function($scope, $http, taskService) {
 
 app.controller('HomeController', function($scope, $http, taskService, $window) {
 	//$scope.tasks = taskService.query();
-
+	$scope.mSearch = "";
 	$.getJSON('http://localhost:8000/planner/tasks', function(data) {
 		$scope.$apply(function(){
 			data.forEach(function(element) {
@@ -147,6 +147,35 @@ app.controller('HomeController', function($scope, $http, taskService, $window) {
 
 	$scope.edit = function(task_id) {
 		$window.location.href = '/#!/task/' + task_id;
+	}
+
+	$scope.search = function() {
+		$http.post('/planner/tasks/search', {"query": $scope.mSearch})
+			.then(function(data) {
+				console.log(data.data)
+				data.data.forEach(function (element) {
+					console.log(element);
+					element.date = element.time;
+
+					var myDate = new Date(element.time),
+						month = '' + (myDate.getMonth() + 1),
+						day = '' + myDate.getDate(),
+						myDateMilSec = myDate.getTime();
+
+					if (month.length < 2) month = '0' + month;
+					if (day.length < 2) day = '0' + day;
+
+					element.time = [month, day].join('-');
+
+					var curDate = new Date(),
+						curDateMilSec = curDate.getTime();
+					var urgentMilSec = 3 * 24 * 60 * 60 * 1000;
+
+					element.urgent = element.priority > 3 || (myDateMilSec - curDateMilSec) < urgentMilSec;
+				});
+
+				$scope.tasks = data.data;
+			});
 	}
 
 
